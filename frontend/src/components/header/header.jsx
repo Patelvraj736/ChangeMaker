@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/icons/logo.svg";
 import userIcon from "../../assets/icons/user.svg";
 import "../../assets/css/header.css";
+import { API_BASE_URL } from "../../App";
 
 function Header({ isAuthenticated, setIsAuthenticated }) {
     const navigate = useNavigate();
@@ -61,7 +62,7 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
 
         const fetchProfileImage = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/users/profile/image/${userId}`);
+                const response = await fetch(`${API_BASE_URL}/api/users/profile/image/${userId}`);
                 if (response.ok) {
                     const blob = await response.blob();
                     const imageUrl = URL.createObjectURL(blob);
