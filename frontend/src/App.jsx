@@ -10,8 +10,10 @@ import AdminDonations from "./components/content/AdminDonation";
 import AddNGOForm from "./components/content/AddNGOForm";
 import EditNGOForm from "./components/content/EditNGOForm";
 import About from "./components/content/About";
-import 'leaflet/dist/leaflet.css';
 import MyNGOs from "./components/content/MyNGOs";
+import 'leaflet/dist/leaflet.css';
+
+export const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 function ScrollToTop() {
     const location = useLocation();
@@ -37,7 +39,7 @@ function App() {
         <Router>
             <ScrollToTop />
             <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-            
+
             <Routes>
                 <Route path="/" element={<Listing />} />
                 <Route path="/ngo/:id" element={<NGODetail />} />
