@@ -5,6 +5,7 @@ import ChatBot from "../components/content/ChatBot";
 import CategorySelection from "../components/content/CategorySelections";
 import NGOListing from "../components/content/NGOListing";
 import "../assets/css/content.css";
+import { API_BASE_URL } from "../App";
 
 const Listing = () => {
     const [categories, setCategories] = useState([]);
@@ -26,13 +27,12 @@ const Listing = () => {
     }, []);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/ngos/categories")
+        axios.get(`${API_BASE_URL}/api/ngos/categories`)
             .then((res) => setCategories(res.data))
             .catch((err) => console.error("Error fetching categories", err));
     }, []);
 
     useEffect(() => {
-
         if (categoryId && categories.length > 0) {
             const matchedCategory = categories.find(c => c.id.toString() === categoryId.toString());
             if (matchedCategory) {
@@ -48,9 +48,8 @@ const Listing = () => {
     }, [categoryId, categories]);
 
     useEffect(() => {
-
         if (selectedCategory && selectedCategory.id) {
-            axios.get(`http://localhost:5000/api/ngos/featured/${selectedCategory.id}`)
+            axios.get(`${API_BASE_URL}/api/ngos/featured/${selectedCategory.id}`)
                 .then((res) => {
                     if (res.data && Object.keys(res.data).length > 0) {
                         setFeaturedNGO(res.data);
@@ -60,7 +59,7 @@ const Listing = () => {
                 })
                 .catch((err) => console.error("Error fetching featured NGO", err));
 
-            axios.get(`http://localhost:5000/api/ngos/category/${selectedCategory.id}/ngos`)
+            axios.get(`${API_BASE_URL}/api/ngos/category/${selectedCategory.id}/ngos`)
                 .then((res) => setNgos(res.data))
                 .catch((err) => console.error("Error fetching NGOs", err));
         }
