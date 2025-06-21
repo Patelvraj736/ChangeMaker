@@ -3,6 +3,7 @@ import '../../assets/css/About.css';
 import {  FaRupeeSign } from 'react-icons/fa';
 import { CgOrganisation } from "react-icons/cg";
 import axios from 'axios';
+import { API_BASE_URL } from '../../App';
 
 const About = () => {
   const [counters, setCounters] = useState({
@@ -13,9 +14,9 @@ const About = () => {
   useEffect(() => {
     const fetchCounters = async () => {
       try {
-        const response = await axios.get('/api/stats'); 
+        const response = await axios.get(`${API_BASE_URL}/api/stats`);; 
         console.log('API Response:', response.data); 
-s
+
         if (response.data) {
           setCounters({
             ngos: response.data.ngoCount || 0,

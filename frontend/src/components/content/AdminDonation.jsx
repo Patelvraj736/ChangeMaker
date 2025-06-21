@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "../../assets/css/AdminDonations.css";
+import { API_BASE_URL } from '../../App'; 
 
 const AdminDonations = () => {
     const [donations, setDonations] = useState([]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        axios.get("http://localhost:5000/api/donations/admin/all-donations", {
+        axios.get(`${API_BASE_URL}/api/donations/admin/all-donations`, {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => setDonations(res.data))

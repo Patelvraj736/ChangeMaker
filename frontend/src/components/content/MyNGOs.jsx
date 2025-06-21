@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../App";
 import "../../assets/css/MyNGOs.css";
 
 const MyNGOs = () => {
     const [ngos, setNgos] = useState([]);
     const navigate = useNavigate();
-    const userId = 30;
+    const userId = localStorage.getItem("user_id");
 
     useEffect(() => {
         const fetchNGOs = async () => {
@@ -15,7 +16,7 @@ const MyNGOs = () => {
 
                 if (!token) return;
 
-                const res = await axios.get(`http://localhost:5000/api/ngos/user/${userId}`, {
+                const res = await axios.get(`${API_BASE_URL}/api/ngos/user/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -28,7 +29,7 @@ const MyNGOs = () => {
         };
 
         fetchNGOs();
-    }, []);
+    }, [userId]);
 
     const handleNGOClick = (ngo) => {
         navigate(`/ngo/${ngo.id}`);
@@ -47,7 +48,7 @@ const MyNGOs = () => {
                             onClick={() => handleNGOClick(ngo)}
                         >
                             <img
-                                src={ngo.image_url || `http://localhost:5000/api/ngos/${ngo.id}/image`}
+                                src={ngo.image_url || `${API_BASE_URL}/api/ngos/${ngo.id}/image`}
                                 alt={ngo.name}
                                 className="ngo-image"
                             />

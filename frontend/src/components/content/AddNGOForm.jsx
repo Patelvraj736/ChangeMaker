@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/AddNGOForm.css";
 import NGOMappr from "../content/NGOMappr";
-
+import { API_BASE_URL } from '../../App';
 
 const AddNGOForm = ({ onNGOAdded }) => {
     const [categories, setCategories] = useState([]);
@@ -26,7 +26,7 @@ const AddNGOForm = ({ onNGOAdded }) => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/ngos/categories");
+                const response = await axios.get(`${API_BASE_URL}/api/ngos/categories`);
                 setCategories(response.data);
             } catch (error) {
                 console.error("Error fetching categories:", error.response?.data || error.message);
@@ -121,7 +121,7 @@ const AddNGOForm = ({ onNGOAdded }) => {
         formData.append("email", email.trim());
 
         try {
-            const response = await axios.post("http://localhost:5000/api/ngos/add", formData, {
+            const response = await axios.post(`${API_BASE_URL}/api/ngos/add`, formData, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                     "Content-Type": "multipart/form-data"
@@ -203,16 +203,17 @@ const AddNGOForm = ({ onNGOAdded }) => {
                     <div className="form-group">
                         <button type="button" className="form-preview-button" onClick={previewLocationOnMap}>Preview Location on Map</button>
                     </div>
+
                     {mapCoords && (
-    <div style={{ marginTop: "10px" }}>
-        <NGOMappr
-            lat={mapCoords.latitude}
-            lng={mapCoords.longitude}
-            name={name}
-            address={`${address}, ${city}, ${state}, ${country}`}
-        />
-    </div>
-)}
+                        <div style={{ marginTop: "10px" }}>
+                            <NGOMappr
+                                lat={mapCoords.latitude}
+                                lng={mapCoords.longitude}
+                                name={name}
+                                address={`${address}, ${city}, ${state}, ${country}`}
+                            />
+                        </div>
+                    )}
 
                     <div className="form-button-container">
                         <button type="submit" className="form-submit-button" disabled={loading}>

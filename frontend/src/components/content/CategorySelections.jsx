@@ -1,5 +1,5 @@
-
 import React from "react";
+import { API_BASE_URL } from "../../App";
 
 const CategorySelection = ({ categories, categorySearch, setCategorySearch, onSelectCategory }) => {
     const filteredCategories = categories.filter(category =>
@@ -19,7 +19,7 @@ const CategorySelection = ({ categories, categorySearch, setCategorySearch, onSe
             <div className="flex">
                 {filteredCategories.map((category) => (
                     <div key={category.id} className="category-card" onClick={() => onSelectCategory(category)}>
-                        <img src={category.image_url} alt={category.name} className="ngo-image" />
+                        <img src={`${API_BASE_URL}/${category.image_url}`} alt={category.name} className="ngo-image" />
                         <div className="ngos-name">{category.name}</div>
                         <div className="ngo-des">{category.description}</div>
                     </div>

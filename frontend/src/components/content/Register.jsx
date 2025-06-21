@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../App';
 
 const RegisterForm = () => {
     const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const RegisterForm = () => {
 
         try {
             setLoading(true);
-            const response = await axios.post('http://localhost:5000/api/auth/send-otp', { email });
+            const response = await axios.post(`${API_BASE_URL}/api/auth/send-otp`, { email });
 
             if (response.status === 200) {
                 setOtpSent(true);
@@ -53,7 +54,7 @@ const RegisterForm = () => {
                 formData.append("image", profileImage);
             }
 
-            const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+            const response = await axios.post(`${API_BASE_URL}/api/auth/register`, formData);
 
             if (response.status === 201) {
                 alert("Registration successful!");
@@ -102,7 +103,6 @@ const RegisterForm = () => {
                     />
                 </div>
                 <div>
-
                     <select
                         value={role}
                         onChange={(e) => setRole(e.target.value)}

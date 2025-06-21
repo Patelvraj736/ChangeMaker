@@ -4,6 +4,7 @@ import axios from "axios";
 import DonationForm from "../content/DonationForm";
 import "../../assets/css/NGODetails.css";
 import NGOMap from "../content/NGOMap";
+import { API_BASE_URL } from "../../App";
 
 const NGODetail = () => {
     const { id } = useParams();
@@ -20,14 +21,14 @@ const NGODetail = () => {
         const storedRole = localStorage.getItem("role");
         setRole(storedRole);
 
-        axios.get(`http://localhost:5000/api/ngos/ngo/${id}`)
+        axios.get(`${API_BASE_URL}/api/ngos/ngo/${id}`)
             .then((response) => {
                 setNgo(response.data);
                 setEditedNgo(response.data);
             })
             .catch((error) => console.error("Error fetching NGO details:", error));
 
-        axios.get(`http://localhost:5000/api/ngos/ngo/${id}/reviews`)
+        axios.get(`${API_BASE_URL}/api/ngos/ngo/${id}/reviews`)
             .then((response) => setReviews(response.data))
             .catch((error) => console.error("Error fetching reviews:", error));
     }, [id]);
@@ -43,7 +44,7 @@ const NGODetail = () => {
             const token = localStorage.getItem("token");
 
             await axios.post(
-                `http://localhost:5000/api/ngos/ngo/${id}/reviews`,
+                `${API_BASE_URL}/api/ngos/ngo/${id}/reviews`,
                 newReview,
                 {
                     headers: {
@@ -53,7 +54,7 @@ const NGODetail = () => {
                 }
             );
 
-            const updatedReviews = await axios.get(`http://localhost:5000/api/ngos/ngo/${id}/reviews`);
+            const updatedReviews = await axios.get(`${API_BASE_URL}/api/ngos/ngo/${id}/reviews`);
             setReviews(updatedReviews.data);
             setNewReview({ user_name: "", rating: 0, comment: "" });
         } catch (error) {
@@ -90,7 +91,7 @@ const NGODetail = () => {
 
             try {
                 const response = await axios.put(
-                    `http://localhost:5000/api/ngos/edit/${ngoId}`,
+                    `${API_BASE_URL}/api/ngos/edit/${ngoId}`,
                     formData,
                     {
                         headers: {
@@ -126,7 +127,7 @@ const NGODetail = () => {
         const accessToken = localStorage.getItem("token");
 
         try {
-            await axios.delete(`http://localhost:5000/api/ngos/${ngoId}`, {
+            await axios.delete(`${API_BASE_URL}/api/ngos/${ngoId}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
@@ -163,7 +164,7 @@ const NGODetail = () => {
         <div className="ngo-detail-container">
             <div className="ngo-name">{ngo.name}</div>
             <div className="img">
-                <img src={ngo.image_url || `http://localhost:5000/api/ngos/${ngo.id}/image`} alt={ngo.name} className="ngo-imagee" />
+                <img src={ngo.image_url || `${API_BASE_URL}/api/ngos/${ngo.id}/image`} alt={ngo.name} className="ngo-imagee" />
             </div>
             <div className="ngo_title">{ngo.description}</div>
 

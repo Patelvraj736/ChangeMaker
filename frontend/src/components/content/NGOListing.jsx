@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/content.css";
+import { API_BASE_URL } from "../../App";
 
 const NGOListing = ({
     selectedCategory,
@@ -42,7 +43,7 @@ const NGOListing = ({
                     <h2 className="head">NGO of the Week</h2>
                     <div key={featuredNGO.id} className="category-card" onClick={() => handleNGOClick(featuredNGO)}>
                         <img
-                            src={featuredNGO.image_url || `http://localhost:5000/api/ngos/${featuredNGO.id}/image`}
+                            src={featuredNGO.image_url || `${API_BASE_URL}/api/ngos/${featuredNGO.id}/image`}
                             alt={featuredNGO.name}
                             className="ngo-image"
                         />
@@ -108,7 +109,7 @@ const NGOListing = ({
                     filteredNGOs.map((ngo) => (
                         <div key={ngo.id} className="category-card" onClick={() => handleNGOClick(ngo)}>
                             <img
-                                src={ngo.image_url || `http://localhost:5000/api/ngos/${ngo.id}/image`}
+                                src={ngo.image_url || `${API_BASE_URL}/api/ngos/${ngo.id}/image`}
                                 alt={ngo.name}
                                 className="ngo-image"
                             />
@@ -121,7 +122,6 @@ const NGOListing = ({
                                 {ngo.state ? `, ${ngo.state}` : ""}
                                 {ngo.country ? `, ${ngo.country}` : ""}
                             </div>
-                            
                         </div>
                     ))
                 ) : (

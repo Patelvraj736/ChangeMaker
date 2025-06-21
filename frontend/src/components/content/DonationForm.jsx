@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/DonationForm.css";
+import { API_BASE_URL } from "../../App";
 
 const DonationForm = ({ ngo }) => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const DonationForm = ({ ngo }) => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/config/razorpay-key")
+            .get(`${API_BASE_URL}/api/config/razorpay-key`)
             .then(res => setRazorpayKey(res.data.key))
             .catch(err => console.error("Error fetching Razorpay key:", err));
     }, []);
@@ -60,7 +61,7 @@ const DonationForm = ({ ngo }) => {
             image: ngo?.image_url || "",
             handler: async function (response) {
                 try {
-                    await axios.post("http://localhost:5000/api/donations/save-donation", {
+                    await axios.post(`${API_BASE_URL}/api/donations/save-donation`, {
                         ngo_id: ngo?.id,
                         donor_name: donor_name.trim(),
                         email: email.trim(),

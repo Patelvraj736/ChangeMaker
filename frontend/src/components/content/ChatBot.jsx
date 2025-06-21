@@ -2,24 +2,25 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/ChatBot.css";
 import send from "../../assets/icons/send.svg";
+import { API_BASE_URL } from "../../App";
 
 const ChatBot = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
-    const chatBoxRef = useRef(null); 
+    const chatBoxRef = useRef(null);
 
     useEffect(() => {
         if (chatBoxRef.current) {
             chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
         }
-    }, [messages]); 
+    }, [messages]);
 
     const sendMessage = async () => {
         const userMessage = { from: "user", text: input };
         setMessages((prev) => [...prev, userMessage]);
 
         try {
-            const res = await axios.post("/api/chatbot", { message: input });
+            const res = await axios.post(`${API_BASE_URL}/api/chatbot`, { message: input });
             const botMessage = { from: "bot", text: res.data.reply };
             setMessages((prev) => [...prev, botMessage]);
         } catch (err) {

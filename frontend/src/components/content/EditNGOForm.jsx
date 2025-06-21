@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/AddNGOForm.css";
 import NGOMappr from "../content/NGOMappr";
+import { API_BASE_URL } from "../../App";
 
 const EditNGOForm = ({ ngoId, onNGOUpdated }) => {
     const [categories, setCategories] = useState([]);
@@ -23,7 +24,7 @@ const EditNGOForm = ({ ngoId, onNGOUpdated }) => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/ngos/categories");
+                const response = await axios.get(`${API_BASE_URL}/api/ngos/categories`);
                 setCategories(response.data);
             } catch (error) {
                 console.error("Error fetching categories:", error.response?.data || error.message);
@@ -36,7 +37,7 @@ const EditNGOForm = ({ ngoId, onNGOUpdated }) => {
     useEffect(() => {
         const fetchNGODetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/ngos/edit/${ngoId}`);
+                const response = await axios.get(`${API_BASE_URL}/api/ngos/edit/${ngoId}`);
                 const ngo = response.data;
                 setName(ngo.name);
                 setDescription(ngo.description);
@@ -103,7 +104,7 @@ const EditNGOForm = ({ ngoId, onNGOUpdated }) => {
             alert("Invalid email address.");
             return;
         }
- 
+
         const accessToken = localStorage.getItem("token");
         if (!accessToken) {
             alert("Unauthorized! Please log in first.");
@@ -134,7 +135,7 @@ const EditNGOForm = ({ ngoId, onNGOUpdated }) => {
         formData.append("email", email.trim());
 
         try {
-            const response = await axios.put(`http://localhost:5000/api/ngos/${ngoId}`, formData, {
+            const response = await axios.put(`${API_BASE_URL}/api/ngos/${ngoId}`, formData, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                     "Content-Type": "multipart/form-data"
@@ -179,7 +180,6 @@ const EditNGOForm = ({ ngoId, onNGOUpdated }) => {
                             ))}
                         </select>
                     </div>
-
 
                     <div className="form-group">
                         <textarea className="form-textarea" rows="6" value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Detailed Information" required />
