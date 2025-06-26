@@ -1,0 +1,246 @@
+
+.ngo-detail-container {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+.ngo-name {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1c4e80;
+    margin-bottom: 1.5rem;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.ngo-imagee {
+    width : 550px;
+    height: 400px;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ngo_title {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #5a5a5a;
+    margin-bottom: 1.5rem;
+}
+
+.info-main {
+    margin-bottom: 2.5rem;
+}
+
+.info {
+    background: #f3f9ff;
+    padding: 1.5rem;
+    font-size: 1rem;
+    border-left: 5px solid #2e86c1;
+    border-radius: 8px;
+    line-height: 1.6;
+    color: #444;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin: 2rem 0 1rem;
+}
+
+.reviews-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.reviews-list li {
+    background-color: #f9f9f9;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid #f4c542;
+    margin-bottom: 1rem;
+
+}
+.star-rating {
+    color: #f4c542;
+    margin-left: 0.5rem;
+    font-size: 25px;
+}
+.admin-action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.delete-btn {
+    background-color: rgb(255, 51, 51);
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.review-form {
+    width: auto;
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 90%;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 1rem;
+    border: 1px solid #cfd9e3;
+    border-radius: 6px;
+    background: #ffffff;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+    border-color: #2e86c1;
+    outline: none;
+}
+
+.review-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.star-container {
+    display: flex;
+    gap: 6px;
+    font-size: 1.6rem;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.star {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.star.selected,
+.star:hover {
+    color: #f4c542;
+}
+delete-btn{
+    background-color: royalblue;
+}
+
+.review-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 1rem;
+    background-color: #2E86C1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.donation-form button:hover {
+    background-color: #21618C;
+}
+
+.info {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .info p {
+    text-align: justify;
+    margin: 0 0 1rem;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+  
+  
+  .info p + p {
+    margin-top: 1em;
+  }
+
+  .rate{
+    display: flex;
+    align-items: center;
+  }
+  .rev-user{
+    font-weight: 800;
+    text-transform: capitalize;
+  }
+  .comment{
+    text-transform: capitalize;
+  }
+  
+  
+  .contact-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+@media(max-width : 550px){
+ 
+.review-form {
+    margin: 1rem auto;
+}
+
+.ngo-imagee {
+    width: 400px;
+    height: 300px;
+}
+}
+@media(max-width : 400px){
+
+.ngo-imagee {
+    width: 300px;
+    height: 200px;
+}
+}
