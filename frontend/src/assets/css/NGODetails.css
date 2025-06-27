@@ -1,4 +1,3 @@
-
 .ngo-detail-container {
     max-width: 1000px;
     margin: 80px auto;
@@ -25,7 +24,7 @@
 }
 
 .ngo-imagee {
-    width : 550px;
+    width: 550px;
     height: 400px;
     max-height: 400px;
     object-fit: cover;
@@ -53,6 +52,24 @@
     border-radius: 8px;
     line-height: 1.6;
     color: #444;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: 16px;
+}
+
+.info p {
+    text-align: justify;
+    margin: 0 0 1rem;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+.info p + p {
+    margin-top: 1em;
 }
 
 h2 {
@@ -73,13 +90,14 @@ h2 {
     border-radius: 8px;
     border-left: 4px solid #f4c542;
     margin-bottom: 1rem;
-
 }
+
 .star-rating {
     color: #f4c542;
     margin-left: 0.5rem;
     font-size: 25px;
 }
+
 .admin-action-buttons {
     display: flex;
     gap: 10px;
@@ -146,9 +164,6 @@ h2 {
 .star:hover {
     color: #f4c542;
 }
-delete-btn{
-    background-color: royalblue;
-}
 
 .review-form button {
     width: 100%;
@@ -164,83 +179,112 @@ delete-btn{
     transition: background-color 0.3s ease;
 }
 
-.donation-form button:hover {
+.review-form button:hover {
     background-color: #21618C;
 }
 
-.info {
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  
-  .info p {
-    text-align: justify;
-    margin: 0 0 1rem;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-  }
-  
-  
-  .info p + p {
-    margin-top: 1em;
-  }
-
-  .rate{
+.rate {
     display: flex;
     align-items: center;
-  }
-  .rev-user{
+}
+
+.rev-user {
     font-weight: 800;
     text-transform: capitalize;
-  }
-  .comment{
+}
+
+.comment {
     text-transform: capitalize;
-  }
-  
-  
-  .contact-info {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    margin-top: 15px;
+}
+
+/* 🌟 Enhanced Contact Section with Emojis */
+.contact-info {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    margin-top: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+.contact-info h2 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    color: #2c3e50;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .contact-info p {
-    margin: 5px 0;
+    margin: 12px 0;
     font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.contact-info .contact-icon {
+    font-size: 18px;
+    margin-right: 4px;
+    flex-shrink: 0;
+}
+
+.contact-info strong {
+    color: #444;
+    min-width: 80px;
 }
 
 .contact-info a {
     color: #007bff;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .contact-info a:hover {
+    color: #0056b3;
     text-decoration: underline;
 }
 
-@media(max-width : 550px){
- 
-.review-form {
-    margin: 1rem auto;
+/* 📱 Responsive Media Queries */
+@media (max-width: 550px) {
+    .review-form {
+        margin: 1rem auto;
+    }
+
+    .ngo-imagee {
+        width: 400px;
+        height: 300px;
+    }
 }
 
-.ngo-imagee {
-    width: 400px;
-    height: 300px;
-}
-}
-@media(max-width : 400px){
+@media (max-width: 400px) {
+    .ngo-imagee {
+        width: 300px;
+        height: 200px;
+    }
 
-.ngo-imagee {
-    width: 300px;
-    height: 200px;
-}
+    .contact-info {
+        padding: 16px;
+    }
+
+    .contact-info strong {
+        width: auto;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .contact-info p {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

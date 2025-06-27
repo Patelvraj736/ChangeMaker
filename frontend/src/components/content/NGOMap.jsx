@@ -5,6 +5,7 @@ import L from "leaflet";
 import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 
+// Custom Leaflet marker icon
 const customIcon = new L.Icon({
     iconUrl: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/images/marker-icon.png",
     shadowUrl: "https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/images/marker-shadow.png",
@@ -56,9 +57,12 @@ const RoutingComponent = ({ from, to }) => {
     return null;
 };
 
-const NGOMap = ({ lat, lng, name, address }) => {
-    const defaultPosition = [23.0225, 72.5714]; 
-    const ngoPosition = lat && lng ? [parseFloat(lat), parseFloat(lng)] : defaultPosition;
+const NGOMap = ({ latitude, longitude, name, address }) => {
+    const defaultPosition = [23.0225, 72.5714]; // Ahmedabad
+    const ngoPosition =
+        latitude != null && longitude != null && !isNaN(latitude) && !isNaN(longitude)
+            ? [parseFloat(latitude), parseFloat(longitude)]
+            : defaultPosition;
 
     const [userLocation, setUserLocation] = useState(null);
     const [showRoute, setShowRoute] = useState(false);
@@ -84,7 +88,7 @@ const NGOMap = ({ lat, lng, name, address }) => {
     };
 
     const calculateDistance = (from, to) => {
-        const R = 6371; 
+        const R = 6371; // Earth's radius in km
         const [lat1, lon1] = from;
         const [lat2, lon2] = to;
 
@@ -94,13 +98,13 @@ const NGOMap = ({ lat, lng, name, address }) => {
         const a =
             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.cos(lat1 * (Math.PI / 180)) *
-                Math.cos(lat2 * (Math.PI / 180)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const d = R * c;
 
-        setDistance(d.toFixed(2)); 
+        setDistance(d.toFixed(2)); // in kilometers
     };
 
     return (
@@ -112,10 +116,7 @@ const NGOMap = ({ lat, lng, name, address }) => {
             )}
 
             <MapContainer center={ngoPosition} zoom={12} style={{ height: "400px", width: "100%" }}>
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    
-                />
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
                 <Marker position={ngoPosition} icon={customIcon}>
                     <Popup>
@@ -142,6 +143,7 @@ const NGOMap = ({ lat, lng, name, address }) => {
     );
 };
 
+// Inline styles
 const buttonStyle = {
     marginTop: "10px",
     padding: "10px 15px",

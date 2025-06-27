@@ -7,7 +7,7 @@ import NGOMap from "../content/NGOMap";
 
 const NGODetail = () => {
     const { id } = useParams();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [ngo, setNgo] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState({ user_name: "", rating: 0, comment: "" });
@@ -311,7 +311,20 @@ const NGODetail = () => {
 
             <DonationForm ngo={ngo} />
 
-            <NGOMap latitude={ngo.latitude} longitude={ngo.longitude} />
+            <NGOMap
+                latitude={ngo.latitude}
+                longitude={ngo.longitude}
+                name={ngo.name}
+                address={ngo.address}
+            />
+
+            <div className="contact-info">
+                <h2>📞 Contact Information</h2>
+                <p><span className="contact-icon">📍</span><strong>Address:</strong> {ngo.address}, {ngo.city}, {ngo.state}, {ngo.country}</p>
+                <p><span className="contact-icon">✉️</span><strong>Email:</strong> <a href={`mailto:${ngo.email}`}>{ngo.email}</a></p>
+                <p><span className="contact-icon">📱</span><strong>Phone:</strong> <a href={`tel:${ngo.phone}`}>{ngo.phone}</a></p>
+            </div>
+
         </div>
     );
 };
