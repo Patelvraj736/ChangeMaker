@@ -62,7 +62,7 @@ const NGOListing = ({
                     </div>
                 </div>
             ) : (
-             
+             <p>Loading featured NGO...</p>
             )}
 
             <h2 className="head">{selectedCategory?.name || "NGO"} NGOs</h2>
